@@ -1,0 +1,74 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Client {
+  id       String     @id @default(uuid())
+  nome     String
+  idade    String
+  username String     @unique
+  email    String     @unique
+  senha    String
+  cliente  Cachorro[] //relation cachorro-cliente
+
+  @@map("clientes")
+}
+
+model Cachorro {
+  id              String        @id @default(uuid())
+  carteirinha     String        @unique
+  nome            String
+  idade           Int
+  porte           String
+  raca            String
+  cartaoVacina    CartaoVacina  @relation(fields: [cartaoVacinaDog], references: [codcartao])
+  cartaoVacinaDog String
+  cliente         Client        @relation(fields: [usernameCliente], references: [username]) // relation cachorro-client
+  usernameCliente String // chamando o cliente em cachorro.
+  atendimeto      Atendimento[] // relation cachorro-atendimeto
+
+  @@map("cachorros")
+}
+
+model CartaoVacina {
+  id           String     @id @default(uuid())
+  codcartao    String     @unique
+  cinomose     String
+  parvovirose  String
+  leptospirose String
+  antirrabica  String
+  leishmaniose String
+  cartaoVacina Cachorro[]
+
+  @@map("cartaoVacina")
+}
+
+model MedicoVet {
+  id         String        @id @default(uuid())
+  nome       String
+  username   String        @unique
+  email      String        @unique
+  senha      String
+  atendimeto Atendimento[] // relation medicoVet-atendimeto
+
+  @@map("vet")
+}
+
+model Atendimento {
+  id                  String    @id @default(uuid())
+  codAtendimento      String    @unique
+  horario             DateTime
+  cachorro            Cachorro  @relation(fields: [cachorroCarteirinha], references: [carteirinha]) // relation cachorro-atendimeto
+  cachorroCarteirinha String // chamando o cachorro em atendimeto
+  vet                 MedicoVet @relation(fields: [vetUsername], references: [username]) // relation medicoVet-atendimeto
+  vetUsername         String // chamando o medicoVet em atendimeto
+  diagnostico         String
+  comentarios         String
+
+  @@map("atendimentos")
+}
