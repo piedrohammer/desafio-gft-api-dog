@@ -1,3 +1,68 @@
+<h3> API basica de clinica veterinária para cachorros feita no meu período de estagio na GFT :mortar_board: <h1>
+
+<h4>:warning::rotating_light:ATENÇÃO: O codigo está bem simples e basico e não tenho a intenção de melhorar ele pois é para eu poder ver a minha evolução.<h4>
+
+<h4> Ferramentas e Linguagens utilizadas :wrench:.<h4>
+ 
+ - VSCode
+ - Typescript
+ - Node.Js
+ - Nest.js
+ - Prisma
+ - MySQL
+ - Postman
+
+<h4> Crud simples para Cachorros, Médicos Veterinários, Cartão de Vacinas, Clientes e Atendimentos com Relação OneToMany.<h4>
+
+ - CRUD Cachorros :dog:: 
+   - id
+   - carteirinha
+   - nome
+   - idade
+   - porte
+   - raca
+   - cartão de vacina
+   - cliente
+ 
+ - CRUD Médicos Veterinários :hospital::woman::man::
+   - id
+   - nome
+   - username
+   - email
+   - senha
+   - atendimentos
+
+ - CRUD Clientes :woman::man::
+    - id
+    - nome
+    - idade
+    - username
+    - email
+    - senha
+  
+ - CRUD Cartão de Vacina :credit_card::syringe::
+   - id
+   - codigo do cartão
+   - codcartao
+   - cinomose
+   - parvovirose
+   - leptospirose
+   - antirrabica
+   - leishmaniose
+   
+  - Atendimentos :file_folder::bookmark_tabs::
+    - id
+    - codigo de atendimentos
+    - horario
+    - carteirinha de cachorros
+    - médico veterinário
+    - diagnóstico
+    - comentários
+  
+
+
+
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
